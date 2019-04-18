@@ -3,7 +3,7 @@ import numpy as np
 from tensorflow.examples.tutorials.mnist import input_data
 
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=False)
-pb_file_path = 'mnist.pb'
+pb_file_path = './model/mnist.pb'
 
 with tf.Graph().as_default():
     output_graph_def = tf.GraphDef()
@@ -16,7 +16,7 @@ with tf.Graph().as_default():
         print(pre_label)
         for i in range(100):
             batch_xs, batch_ys = mnist.train.next_batch(50)
-            a = sess.run(pre_label, feed_dict={'x:0': batch_xs})
+            a = sess.run(pre_label, feed_dict={'x_input:0': batch_xs})
             prediction = np.array(a)
             print(prediction)
             # print(prediction.argmax(axis=1))
